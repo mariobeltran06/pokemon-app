@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+@import 'color-ranges.scss';
+@import 'fonts.scss';
+@include mat.core();
+
+$primary-palette: mat.define-palette($primary-color-range, 700, 500, 200);
+$accent-palette: mat.define-palette($accent-color-range, 700, 500, 200);
+$warn-palette: mat.define-palette($warn-color-range, 700, 500, 200);
+
+$typography: mat.define-typography-config(
+  $font-family: "'Poppins-Regular', Verdana, sans-serif",
+);
+
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary-palette,
+      accent: $accent-palette,
+      warn: $warn-palette,
+    ),
+    typography: $typography,
+  )
+);
+
+@include mat.all-component-themes($light-theme);

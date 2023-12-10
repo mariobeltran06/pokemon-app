@@ -1,0 +1,59 @@
+@import 'colors.scss';
+@import './fonts.scss';
+
+/** Global Styles**/
+
+.mat-mdc-text-field-wrapper {
+  height: 50px !important;
+}
+
+.mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
+  top: 23px !important;
+}
+
+.mdc-text-field--outlined {
+  --mdc-outlined-text-field-outline-width: 1px !important;
+  --mdc-outlined-text-field-focus-outline-width: 1px !important;
+  --mdc-outlined-text-field-container-shape: 10px !important;
+}
+
+.mdc-floating-label--float-above {
+  font-family: 'Poppins-Bold', Verdana, sans-serif !important;
+}
+
+.mat-mdc-form-field-input-control .mat-mdc-form-field-input-control {
+  font-family: 'Poppins-Regular', Verdana, sans-serif !important;
+}
+
+.mat-mdc-form-field.ng-touched.ng-valid {
+  --mdc-outlined-text-field-outline-color: rgba(1, 66, 106, 0.87) !important;
+  --mdc-outlined-text-field-label-text-color: rgba(1, 66, 106, 0.87) !important;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  max-height: 350px !important;
+  padding: 0 !important;
+}
+
+.mat-mdc-option {
+  min-height: 36px !important;
+  font-family: 'Poppins-Regular', Verdana, sans-serif !important;
+  font-size: 14px !important;
+  color: $blue-1 !important;
+  border-bottom: 0.1px solid $blue-4 !important;
+  &:last-child {
+    border-bottom: none !important;
+  }
+}
+
+.mat-mdc-option-active {
+  background-color: $blue-7 !important;
+}
+
+.mat-pseudo-checkbox {
+  display: none !important;
+}
