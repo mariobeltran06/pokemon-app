@@ -1,1 +1,38 @@
 Pokemon App
+<br />
+<form [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Outline form field</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="name" required />
+    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="control('name').hasError('required')"
+      >Is required</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Outline form field</mat-label>
+    <input matInput placeholder="Placeholder" formControlName="last" required />
+    <mat-hint>Hint</mat-hint>
+    <mat-error *ngIf="control('last').hasError('required')"
+      >Is required</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="favorites" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>
+        <app-svg-icon
+          [icon]="'icon-calendar'"
+          [size]="24"
+          [fill]="'#01426a'"></app-svg-icon>
+      </mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker> </mat-datepicker>
+  </mat-form-field>
+</form>
+<app-svg-icon
+  [icon]="'icon-calendar'"
+  [size]="24"
+  [fill]="'#01426a'"></app-svg-icon>
