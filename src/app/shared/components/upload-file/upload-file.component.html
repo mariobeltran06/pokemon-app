@@ -1,0 +1,57 @@
+<div
+  class="file-drop"
+  [ngClass]="{
+    'drag-enter': isDragging,
+    selected: isFile,
+    'is-error': isError
+  }"
+  (drop)="onDrop($event)"
+  (dragover)="onDragOver($event)"
+  (dragenter)="isDragging = true"
+  (dragleave)="isDragging = false"
+  (click)="handleClickInput($event)">
+  <div class="container-info">
+    <div class="first-item">
+      <ng-container *ngIf="isFile; else dontShowFile">
+        <app-paragraph
+          [content]="text"
+          [fontFamily]="'semibold'"
+          [color]="isError ? 'red' : 'primary'"
+          [fontSize]="'0.875rem'"></app-paragraph
+      ></ng-container>
+      <ng-template #dontShowFile>
+        <app-paragraph
+          [content]="text"
+          [fontFamily]="'semibold'"
+          [color]="'primary'"
+          [fontSize]="'0.875rem'"></app-paragraph>
+      </ng-template>
+    </div>
+    <span class="spacer"></span>
+    <div class="second-item">
+      <ng-container *ngIf="isFile; else noFile">
+        <app-svg-icon
+          (click)="deleteActualFile($event)"
+          [icon]="'icon-trash'"
+          [fill]="'#df1c24'"
+          [size]="24"></app-svg-icon>
+      </ng-container>
+      <ng-template #noFile>
+        <app-svg-icon [icon]="'icon-upload-file'" [size]="24"></app-svg-icon>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<input
+  type="file"
+  accept=".jpg,.png,.jpeg"
+  (change)="onFileSelected($event)"
+  #fileInput
+  [ngStyle]="{ display: 'none' }" />
+<div *ngIf="isError">
+  <app-paragraph
+    [content]="'Solo se permite PNG, JPG, JPEG y tamaño máximo de 1MB'"
+    [fontFamily]="'semibold'"
+    [color]="'red'"
+    [fontSize]="'0.875rem'"></app-paragraph>
+</div>

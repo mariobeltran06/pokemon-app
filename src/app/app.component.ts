@@ -14,7 +14,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterOutlet } from '@angular/router';
+import { ButtonComponent } from './shared/components/button/button.component';
+import { ParagraphComponent } from './shared/components/paragraph/paragraph.component';
 import { SvgIconComponent } from './shared/components/svg-icon/svg-icon.component';
+import { UploadFileComponent } from './shared/components/upload-file/upload-file.component';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +32,10 @@ import { SvgIconComponent } from './shared/components/svg-icon/svg-icon.componen
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    SvgIconComponent
+    SvgIconComponent,
+    ButtonComponent,
+    ParagraphComponent,
+    UploadFileComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
