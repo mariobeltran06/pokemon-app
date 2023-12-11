@@ -1,0 +1,51 @@
+@import 'colors.scss';
+
+.btn {
+  border-radius: 10px;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+}
+
+.linear-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+.primary {
+  cursor: pointer;
+  background-color: $blue-2;
+  color: $white;
+}
+
+.secundary {
+  cursor: pointer;
+  background-color: $white;
+  color: $blue-2;
+  border: 1px solid $blue-2;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: $neutral-gray-1;
+  color: $neutral-gray-2;
+}
+
+.regular {
+  font-family: 'Poppins-Regular', Verdana, sans-serif;
+}
+
+.semibold {
+  font-family: 'Poppins-Semibold', Verdana, sans-serif;
+}
+
+.bold {
+  font-family: 'Poppins-Bold', Verdana, sans-serif;
+}
+
+.medium {
+  font-family: 'Poppins-Medium', Verdana, sans-serif;
+}

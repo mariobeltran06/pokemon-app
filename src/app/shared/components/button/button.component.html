@@ -1,1 +1,21 @@
-<p>button works!</p>
+<button
+  class="btn"
+  type="button"
+  [ngStyle]="{ width, height, 'font-size': fontSize }"
+  [ngClass]="allClasses">
+  <div class="linear-items">
+    <span *ngIf="icon && iconPosition === 'prefix'">
+      <app-svg-icon
+        [icon]="icon"
+        [fill]="iconColor"
+        [size]="iconSize"></app-svg-icon>
+    </span>
+    <span>{{ text }}</span>
+    <span *ngIf="icon && iconPosition === 'suffix'">
+      <app-svg-icon
+        [icon]="icon"
+        [fill]="iconColor"
+        [size]="iconSize"></app-svg-icon
+    ></span>
+  </div>
+</button>
