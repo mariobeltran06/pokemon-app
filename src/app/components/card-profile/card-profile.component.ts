@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IInfoCardProfile } from 'src/app/core/interfaces/info-card-profile.interface';
+import { TruncatePipe } from 'src/app/core/pipes/truncate.pipe';
 import { ParagraphComponent } from 'src/app/shared/components/paragraph/paragraph.component';
 import { SvgIconComponent } from 'src/app/shared/components/svg-icon/svg-icon.component';
 import { UploadFileComponent } from 'src/app/shared/components/upload-file/upload-file.component';
@@ -13,6 +14,7 @@ import { UploadFileComponent } from 'src/app/shared/components/upload-file/uploa
     SvgIconComponent,
     UploadFileComponent,
     ParagraphComponent,
+    TruncatePipe,
   ],
   templateUrl: './card-profile.component.html',
   styleUrls: ['./card-profile.component.scss'],

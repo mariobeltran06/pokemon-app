@@ -1,3 +1,4 @@
 export const environment = {
-    production: false,
+  urlBackendPokemon: 'https://pokeapi.co/api/v2',
+  production: false,
 };

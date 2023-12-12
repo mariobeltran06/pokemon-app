@@ -1,5 +1,5 @@
 export interface IInfoCardProfile {
-  hobby: string;
+  hobby: string | null;
   age: number;
   document: string | null;
 }

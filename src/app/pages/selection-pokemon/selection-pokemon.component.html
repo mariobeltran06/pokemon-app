@@ -1,0 +1,74 @@
+<div class="container" [hidden]="loading">
+  <div class="header">
+    <div class="section-icon">
+      <app-svg-icon [icon]="'icon-chevron-left'" [size]="40"></app-svg-icon>
+    </div>
+    <!-- <div class="first-heading">
+      <h1 class="heading first-heading__title"></h1>
+    </div> -->
+    <div class="second-heading">
+      <h1 class="heading second-heading__title">¡Ya casi términamos!</h1>
+    </div>
+  </div>
+  <p class="sub-header">Revisa la información, y completa lo solicitado.</p>
+  <div class="container-content">
+    <div class="card">
+      <app-card-profile
+        [nameCoach]="nameCoach"
+        [coachImage]="photo"
+        [infoProfile]="infoCoach"></app-card-profile>
+    </div>
+    <div class="section-form">
+      <h2 class="section-title">Pokémon</h2>
+      <p class="section-subtitle">
+        Selecciona 3 Pokémon para que sean parte de tu equipo
+      </p>
+      <div class="form-group">
+        <div class="form-control">
+          <span class="icon">
+            <app-svg-icon [icon]="'icon-search'" [size]="24"></app-svg-icon>
+          </span>
+          <input
+            type="text"
+            class="custom-input"
+            placeholder="Buscar por índice, nombre..."
+            [formControl]="search"
+            [maxLength]="50" />
+        </div>
+        <div
+          *ngIf="(pokemonsFiltered | async)!.length > 0; else noMatch"
+          class="layout-pokemons">
+          <div *ngFor="let pokemon of pokemonsFiltered | async">
+            <app-mini-card-pokemon
+              (emitClick)="selectedPokemon.toggle(pokemon)"
+              [pokemon]="pokemon"
+              [selected]="selectedPokemon.isSelected(pokemon)"
+              [disabled]="
+                selectedPokemon.selected.length === 3 &&
+                !selectedPokemon.isSelected(pokemon)
+              "></app-mini-card-pokemon>
+          </div>
+        </div>
+        <ng-template #noMatch>
+          <div class="no-match">
+            <h2 class="title">No hay pokémons</h2>
+          </div>
+        </ng-template>
+        <div class="button-group">
+          <app-button
+            [text]="'Guardar'"
+            [width]="'220px'"
+            [height]="'50px'"
+            [fontFamily]="'semibold'"
+            [fontSize]="'18px'"
+            [disabled]="formPokemon.invalid"
+            (emitClick)="savePokemons()"
+            [class]="'primary'"></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loading-pokemon
+  *ngIf="loading"
+  [title]="'Cargando perfil...'"></app-loading-pokemon>

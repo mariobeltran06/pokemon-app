@@ -13,7 +13,7 @@
     </ng-container>
     <ng-template #showOtherHeader>
       <h2 class="title title__user" *ngIf="nameCoach; else noNameCoach">
-        {{ nameCoach }}
+        {{ nameCoach | truncate : 20 }}
       </h2>
       <ng-template #noNameCoach>
         <h2 class="title">Imágen perfil</h2>
@@ -41,7 +41,11 @@
         <p class="item column-1__item">Pasatiempo:</p>
       </div>
       <div class="column column-2">
-        <p class="item column-2__item">{{ infoProfile.hobby }}</p>
+        <p class="item column-2__item">
+          {{
+            infoProfile.hobby ? (infoProfile.hobby | truncate : 12) : 'Ninguno'
+          }}
+        </p>
       </div>
       <div class="column column-1">
         <p class="item column-1__item">Edad:</p>
