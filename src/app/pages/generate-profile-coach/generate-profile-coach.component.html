@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="header">
+    <div class="section-icon">
+      <app-svg-icon [icon]="'icon-chevron-left'" [size]="40"></app-svg-icon>
+    </div>
+    <div class="first-heading">
+      <h1 class="heading first-heading__title">¡Hola!</h1>
+    </div>
+    <div class="second-heading">
+      <h1 class="heading second-heading__title">Configuremos tu perfil</h1>
+    </div>
+  </div>
+  <p class="sub-header">Queremos conocerte mejor.</p>
+  <div class="container-content">
+    <div class="card">
+      <app-card-profile (filePhoto)="changeFile($event)"></app-card-profile>
+    </div>
+    <div class="section-form">
+      <h2 class="section-title">Tu información</h2>
+      <p class="section-subtitle">
+        Completa la siguiente información para completar tu perfil
+      </p>
+      <div class="form-group">
+        <form [formGroup]="formProfileCoach">
+          <div class="form-control">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input
+                type="text"
+                matInput
+                placeholder="Ej. Ricardo"
+                formControlName="name"
+                [maxLength]="50"
+                [minLength]="2" />
+              <mat-error *ngIf="control('name').hasError('required')"
+                >El campo es requerido.</mat-error
+              >
+              <mat-error *ngIf="control('name').hasError('minlength')"
+                >Debe tener 2 caracteres como mínimo.</mat-error
+              >
+              <mat-error *ngIf="control('name').hasError('maxlength')"
+                >Debe tener 50 caracteres como máximo.</mat-error
+              >
+              <mat-error *ngIf="control('name').hasError('pattern')"
+                >Debe contener solo letras y sin espacios.</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div class="form-control">
+            <mat-form-field appearance="outline">
+              <mat-label>Pasatiempo favorito</mat-label>
+              <mat-chip-grid #chipGrid>
+                <mat-chip-row *ngIf="activity" (removed)="remove()">
+                  {{ activity }}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              </mat-chip-grid>
+              <input
+                type="text"
+                class="input-favorite"
+                [ngClass]="{ 'no-show-input': activity !== null }"
+                formControlName="hobby"
+                [matChipInputFor]="chipGrid"
+                [matAutocomplete]="auto"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)" />
+              <mat-autocomplete
+                #auto="matAutocomplete"
+                (optionSelected)="selected($event)">
+                <mat-option
+                  *ngFor="let activity of filteredActivities | async"
+                  [value]="activity">
+                  {{ activity }}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-hint>Presiona "Enter" para registrar el pasatiempo</mat-hint>
+              <mat-error *ngIf="control('hobby').hasError('maxlength')"
+                >Debe tener 50 caracteres como máximo.</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div class="form-control">
+            <mat-form-field appearance="outline">
+              <mat-label>Cumpleaños</mat-label>
+              <input
+                matInput
+                [min]="minDate"
+                [max]="maxDate"
+                [matDatepicker]="picker"
+                formControlName="birthday" />
+              <mat-hint>DD/MM/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>
+                  <app-svg-icon
+                    [icon]="'icon-calendar'"
+                    [size]="24"
+                    [fill]="'#01426a'"></app-svg-icon>
+                </mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker> </mat-datepicker>
+              <mat-error *ngIf="control('birthday').hasError('required')"
+                >El campo es requerido.</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div class="form-control">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ displayLabelDocument }}</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="document"
+                [maxLength]="10" />
+              <mat-error *ngIf="control('document').hasError('required')"
+                >El campo es requerido.</mat-error
+              >
+              <mat-error *ngIf="control('document').hasError('minlength')"
+                >Debe tener 9 digitos el DUI.</mat-error
+              >
+              <mat-error *ngIf="control('document').hasError('maxlength')"
+                >Debe tener 10 caracteres como máximo.</mat-error
+              >
+              <mat-error *ngIf="control('document').hasError('isValidDUI')"
+                >Debe cumplir con el formato ########-# y DUI válido.</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div class="button-group">
+            <app-button
+              [text]="'Continuar'"
+              [width]="'220px'"
+              [height]="'50px'"
+              [fontFamily]="'semibold'"
+              [fontSize]="'18px'"
+              [disabled]="formProfileCoach.invalid"
+              (emitClick)="sendForm()"
+              [class]="'primary'"></app-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

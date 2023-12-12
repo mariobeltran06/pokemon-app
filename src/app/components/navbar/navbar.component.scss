@@ -1,0 +1,16 @@
+@import 'colors.scss';
+
+mat-toolbar {
+  padding: 12px 46px;
+  box-sizing: border-box;
+  background-color: $white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 50px;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

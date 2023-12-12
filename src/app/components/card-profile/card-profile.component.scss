@@ -1,0 +1,117 @@
+@import 'colors.scss';
+
+.card-profile {
+  background-color: $yellow-1;
+  border-radius: 50px;
+  padding: 25px 30px;
+  width: 390px;
+  height: 620px;
+
+  &__header {
+    margin-top: 35px;
+    .container-title {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0px 10px;
+      .heading {
+        .title-header {
+          font-family: 'Poppins-Regular', Verdana, sans-serif;
+          font-size: 24px;
+          line-height: normal;
+          color: $neutral-black-1;
+        }
+      }
+      .spacer {
+        flex: 1 1 auto;
+      }
+      .image-medal {
+        align-self: center;
+        justify-self: end;
+        .medal {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+    .title {
+      text-align: center;
+      font-family: 'Poppins-Regular', Verdana, sans-serif;
+      font-size: 30px;
+      line-height: normal;
+      color: $black;
+
+      &__user {
+        font-family: 'Poppins-Bold', Verdana, sans-serif;
+        font-size: 35px;
+        line-height: normal;
+        color: $blue-1;
+      }
+    }
+  }
+
+  &__image {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    .image {
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      border: 14px solid $white;
+      &__coach {
+        object-fit: cover;
+      }
+
+      &__placeholder {
+        background-color: $blue-7;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+  &__content {
+    margin-top: 35px;
+
+    .container-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0px 22px;
+
+      .column {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+
+      .item {
+        font-size: 20px;
+        color: $neutral-black-1;
+      }
+      .column-1 {
+        justify-content: flex-start;
+
+        &__item {
+          font-family: 'Poppins-Bold', Verdana, sans-serif;
+        }
+      }
+
+      .column-2 {
+        justify-content: flex-end;
+
+        &__item {
+          font-family: 'Poppins-Regular', Verdana, sans-serif;
+        }
+      }
+    }
+  }
+}

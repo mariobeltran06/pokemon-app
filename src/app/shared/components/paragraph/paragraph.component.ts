@@ -11,7 +11,7 @@ import { ITextColor } from './types/paragraph.types';
   styleUrls: ['./paragraph.component.scss'],
 })
 export class ParagraphComponent {
-  @Input() content: string = '';
+  @Input() content: string | null = '';
   @Input() fontSize: string = '1rem';
   @Input() fontFamily: IFontFamily = 'regular';
   @Input() letterSpacing: string = 'normal';

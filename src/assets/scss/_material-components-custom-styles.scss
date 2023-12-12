@@ -48,6 +48,9 @@
   &:last-child {
     border-bottom: none !important;
   }
+  &:hover {
+    background-color: $blue-7 !important;
+  }
 }
 
 .mat-mdc-option-active {
@@ -56,4 +59,18 @@
 
 .mat-pseudo-checkbox {
   display: none !important;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-autocomplete-panel-above)
+  div.mat-mdc-autocomplete-panel {
+  border-top-right-radius: 10px !important;
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  max-height: 350px !important;
+  padding: 0 !important;
+}
+
+.mdc-evolution-chip-set {
+  margin-top: -10px !important;
 }

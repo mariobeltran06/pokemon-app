@@ -2,7 +2,8 @@
   class="btn"
   type="button"
   [ngStyle]="{ width, height, 'font-size': fontSize }"
-  [ngClass]="allClasses">
+  [ngClass]="allClasses"
+  (click)="triggerClick()">
   <div class="linear-items">
     <span *ngIf="icon && iconPosition === 'prefix'">
       <app-svg-icon
