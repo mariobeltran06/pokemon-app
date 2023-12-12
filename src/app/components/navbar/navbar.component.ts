@@ -19,7 +19,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  nameCoach: string | null = 'Mario';
+  nameCoach: string = '';
   finished: boolean = false;
 
   constructor(private store: Store<IAppState>) {
@@ -37,6 +37,10 @@ export class NavbarComponent {
       .subscribe((finish: boolean) => {
         this.finished = finish;
       });
+  }
+
+  get firstNameCoach(): string {
+    return this.nameCoach.split(' ')[0];
   }
 
   open(): void {
