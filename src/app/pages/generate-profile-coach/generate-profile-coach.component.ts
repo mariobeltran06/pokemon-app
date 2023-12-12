@@ -19,15 +19,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { debounceTime, map, Observable, startWith } from 'rxjs';
+import { Router } from '@angular/router';
+import { map, Observable, startWith } from 'rxjs';
 import { CardProfileComponent } from 'src/app/components/card-profile/card-profile.component';
+import { LoadingPokemonComponent } from 'src/app/components/loading-pokemon/loading-pokemon.component';
 import { ACTIVITIES } from 'src/app/core/constants/activities.constant';
 import { IInfoProfile } from 'src/app/core/interfaces/info-profile.interface';
 import { PATTERN_NAMES } from 'src/app/core/utils/patterns';
 import { validateDUI } from 'src/app/core/validators/validator-dui.validators';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 import { SvgIconComponent } from 'src/app/shared/components/svg-icon/svg-icon.component';
+import { ProfileActions } from 'src/app/store/actions/profile.actions';
+import { IAppState } from 'src/app/store/states/app.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngrx/store';
 
 @UntilDestroy()
 @Component({
@@ -46,6 +51,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
     MatDatepickerModule,
     MatNativeDateModule,
     ButtonComponent,
+    LoadingPokemonComponent,
   ],
   templateUrl: './generate-profile-coach.component.html',
   styleUrls: ['./generate-profile-coach.component.scss'],
@@ -67,8 +73,13 @@ export class GenerateProfileCoachComponent {
     validateDUI(),
   ];
   validatorsCarnet: ValidatorFn | ValidatorFn[] = [Validators.maxLength(10)];
+  loading: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store<IAppState>,
+    private router: Router
+  ) {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
     const currentDate = new Date().getDate();
@@ -98,7 +109,7 @@ export class GenerateProfileCoachComponent {
       )
     );
     this.control('birthday')
-      .valueChanges.pipe(untilDestroyed(this), debounceTime(1000))
+      .valueChanges.pipe(untilDestroyed(this))
       .subscribe((date: Date | null) => {
         if (date) {
           this.age = this.calculateAge(date);
@@ -160,7 +171,11 @@ export class GenerateProfileCoachComponent {
         document: document.trim() === '' ? null : document,
         photo,
       };
-      console.log(coachInfo);
+      this.loading = true;
+      setTimeout(() => {
+        this.store.dispatch(ProfileActions.saveProfile({ profile: coachInfo }));
+        this.router.navigate(['seleccion-pokemon']);
+      }, 5000);
     }
   }
 
