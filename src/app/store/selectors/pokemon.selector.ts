@@ -8,3 +8,8 @@ export const selectPokemons = createSelector(
   selectPokemon,
   (state: IPokemonState) => state.pokemons
 );
+
+export const selectFinishState = createSelector(
+  selectPokemon,
+  (state: IPokemonState) => state.finished
+);

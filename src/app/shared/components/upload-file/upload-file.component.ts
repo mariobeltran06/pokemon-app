@@ -75,7 +75,6 @@ export class UploadFileComponent {
       reader.onload = () => {
         if (reader.result) {
           const base64String = reader.result as string;
-          console.log(base64String);
           this.fileUpload.emit(base64String);
         } else {
           this.fileUpload.emit(null);

@@ -26,6 +26,7 @@ import { ListPokemonService } from 'src/app/core/services/list-pokemon.service';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 import { SvgIconComponent } from 'src/app/shared/components/svg-icon/svg-icon.component';
 import { PokemonActions } from 'src/app/store/actions/pokemon.actions';
+import { selectPokemons } from 'src/app/store/selectors/pokemon.selector';
 import { selectAllProfile } from 'src/app/store/selectors/profile.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -60,6 +61,7 @@ export class SelectionPokemonComponent implements OnInit {
   pokemonsFirstGeneration: IPokemonFirstGeneration[] = [];
   pokemonsFiltered!: Observable<IPokemonFirstGeneration[]>;
   selectedPokemon = new SelectionModel<IPokemonFirstGeneration>(true, []);
+  editMode: boolean = false;
   constructor(
     private formbuilder: FormBuilder,
     private store: Store<IAppState>,
@@ -70,13 +72,17 @@ export class SelectionPokemonComponent implements OnInit {
       .select(selectAllProfile)
       .pipe(untilDestroyed(this))
       .subscribe(profile => {
-        this.nameCoach = profile.name;
-        this.photo = profile.photo;
-        this.infoCoach = {
-          age: profile.age,
-          hobby: profile.hobby,
-          document: profile.document,
-        };
+        if (profile.name) {
+          this.nameCoach = profile.name;
+          this.photo = profile.photo;
+          this.infoCoach = {
+            age: profile.age,
+            hobby: profile.hobby,
+            document: profile.document,
+          };
+        } else {
+          this.router.navigate(['']);
+        }
       });
     this.formPokemon = formbuilder.group({
       pokemons: [null, [Validators.required]],
@@ -99,6 +105,14 @@ export class SelectionPokemonComponent implements OnInit {
         this.formPokemon.controls['pokemons'].setValue(null);
       }
     });
+    this.store
+      .select(selectPokemons)
+      .pipe(untilDestroyed(this))
+      .subscribe((pokemons: IPokemonFirstGeneration[]) => {
+        if (pokemons.length > 0) {
+          this.editMode = true;
+        }
+      });
   }
 
   loadPokemons(): void {
@@ -121,10 +135,23 @@ export class SelectionPokemonComponent implements OnInit {
     if (this.formPokemon.valid) {
       const { pokemons } = this.formPokemon.value;
       this.loading = true;
+      this.store.dispatch(PokemonActions.savePokemons({ pokemons }));
+      this.store.dispatch(PokemonActions.finished());
       setTimeout(() => {
-        this.store.dispatch(PokemonActions.savePokemons({ pokemons }));
         this.router.navigate(['perfil-finalizado']);
       }, 5000);
+    }
+  }
+
+  cancel(): void {
+    this.router.navigate(['perfil-finalizado']);
+  }
+
+  backRoute(): void {
+    if (this.editMode) {
+      this.router.navigate(['perfil-finalizado']);
+    } else {
+      this.router.navigate(['']);
     }
   }
 

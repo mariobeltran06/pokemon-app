@@ -1,1 +1,61 @@
-<p>finished-profile works!</p>
+<div class="container" [hidden]="loading">
+  <div class="header">
+    <div class="first-heading">
+      <h1 class="heading first-heading__title">¡Hola {{ firstNameCoach }}!</h1>
+    </div>
+    <div class="second-heading">
+      <app-button
+        [text]="'Editar perfil'"
+        [width]="'134px'"
+        [iconPosition]="'prefix'"
+        [icon]="'icon-pencil-edit'"
+        [iconSize]="14"
+        [height]="'30px'"
+        [fontFamily]="'semibold'"
+        [fontSize]="'12px'"
+        (emitClick)="sendRoute('')"
+        [class]="'secundary'"></app-button>
+    </div>
+  </div>
+  <div class="container-content">
+    <div class="card">
+      <app-card-profile
+        [nameCoach]="nameCoach"
+        [coachImage]="photo"
+        [finished]="finished"
+        [infoProfile]="infoCoach"></app-card-profile>
+    </div>
+    <div class="section-form">
+      <div class="header">
+        <div class="section-title">
+          <h2 class="title">Mis Pokémon</h2>
+        </div>
+        <span class="spacer"></span>
+        <div class="section-button">
+          <app-button
+            [text]="'Editar'"
+            [width]="'134px'"
+            [iconPosition]="'prefix'"
+            [icon]="'icon-pencil-edit'"
+            [iconSize]="14"
+            [height]="'30px'"
+            [fontFamily]="'semibold'"
+            [fontSize]="'12px'"
+            (emitClick)="sendRoute('seleccion-pokemon')"
+            [class]="'secundary'"></app-button>
+        </div>
+      </div>
+      <div class="container-swiper">
+        <swiper
+          [config]="config"
+          [pagination]="false"
+          [navigation]="false"
+          [loop]="true">
+          <ng-template swiperSlide *ngFor="let poke of pokeDex; let i = index">
+            <app-card-pokemon [pokemon]="poke" [index]="i"></app-card-pokemon>
+          </ng-template>
+        </swiper>
+      </div>
+    </div>
+  </div>
+</div>

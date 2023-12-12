@@ -1,13 +1,12 @@
 <div class="container" [hidden]="loading">
   <div class="header">
     <div class="section-icon">
-      <app-svg-icon [icon]="'icon-chevron-left'" [size]="40"></app-svg-icon>
+      <app-svg-icon (click)="backRoute()" [icon]="'icon-chevron-left'" [size]="40"></app-svg-icon>
     </div>
-    <!-- <div class="first-heading">
-      <h1 class="heading first-heading__title"></h1>
-    </div> -->
     <div class="second-heading">
-      <h1 class="heading second-heading__title">¡Ya casi términamos!</h1>
+      <h1 class="heading second-heading__title">
+        {{ editMode ? 'Editar Pokémons' : '¡Ya casi términamos!' }}
+      </h1>
     </div>
   </div>
   <p class="sub-header">Revisa la información, y completa lo solicitado.</p>
@@ -64,6 +63,15 @@
             [disabled]="formPokemon.invalid"
             (emitClick)="savePokemons()"
             [class]="'primary'"></app-button>
+          <app-button
+            *ngIf="editMode"
+            [text]="'Cancelar'"
+            [width]="'220px'"
+            [height]="'50px'"
+            [fontFamily]="'semibold'"
+            [fontSize]="'18px'"
+            (emitClick)="cancel()"
+            [class]="'secundary'"></app-button>
         </div>
       </div>
     </div>
