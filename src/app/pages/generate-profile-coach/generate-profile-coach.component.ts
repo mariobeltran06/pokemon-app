@@ -30,6 +30,8 @@ import { validateDUI } from 'src/app/core/validators/validator-dui.validators';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 import { SvgIconComponent } from 'src/app/shared/components/svg-icon/svg-icon.component';
 import { ProfileActions } from 'src/app/store/actions/profile.actions';
+import { selectFinishState } from 'src/app/store/selectors/pokemon.selector';
+import { selectAllProfile } from 'src/app/store/selectors/profile.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
@@ -74,6 +76,9 @@ export class GenerateProfileCoachComponent {
   ];
   validatorsCarnet: ValidatorFn | ValidatorFn[] = [Validators.maxLength(10)];
   loading: boolean = false;
+  photo: string | null = null;
+  editMode: boolean = false;
+  finished: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -128,6 +133,33 @@ export class GenerateProfileCoachComponent {
           this.control('document').updateValueAndValidity();
         }
       });
+    this.loadDataIsExist();
+  }
+
+  loadDataIsExist(): void {
+    this.store
+      .select(selectAllProfile)
+      .pipe(untilDestroyed(this))
+      .subscribe(profile => {
+        if (profile.name) {
+          this.photo = profile.photo;
+          this.formProfileCoach.patchValue({
+            name: profile.name,
+            hobby: profile.hobby,
+            birthday: profile.birthday,
+            document: profile.document,
+            photo: profile.photo,
+          });
+          this.activity = profile.hobby;
+          this.editMode = true;
+        }
+      });
+    this.store
+      .select(selectFinishState)
+      .pipe(untilDestroyed(this))
+      .subscribe((finish: boolean) => {
+        this.finished = finish;
+      });
   }
 
   add(event: MatChipInputEvent): void {
@@ -159,6 +191,12 @@ export class GenerateProfileCoachComponent {
     this.control('photo').setValue(file);
   }
 
+  backRoute(): void {
+    if (this.editMode && this.finished) {
+      this.router.navigate(['perfil-finalizado']);
+    }
+  }
+
   sendForm(): void {
     if (this.formProfileCoach.valid) {
       const { name, hobby, birthday, document, photo } =
@@ -168,13 +206,17 @@ export class GenerateProfileCoachComponent {
         hobby: hobby.trim() === '' ? null : hobby,
         birthday,
         age: this.age,
-        document: document.trim() === '' ? null : document,
+        document: document ? (document.trim() === '' ? null : document) : null,
         photo,
       };
       this.loading = true;
       setTimeout(() => {
+        this.router.navigate([
+          this.editMode && this.finished
+            ? 'perfil-finalizado'
+            : 'seleccion-pokemon',
+        ]);
         this.store.dispatch(ProfileActions.saveProfile({ profile: coachInfo }));
-        this.router.navigate(['seleccion-pokemon']);
       }, 5000);
     }
   }

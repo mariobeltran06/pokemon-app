@@ -21,7 +21,8 @@
       <div class="progress-stat">
         <app-progress-bar
           [process]="stat.count"
-          [totalProcess]="stat.countMax"></app-progress-bar>
+          [totalProcess]="stat.countMax"
+          [color]="index % 2 == 0 ? 'green' : 'orange'"></app-progress-bar>
       </div>
     </div>
   </div>

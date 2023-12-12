@@ -1,19 +1,26 @@
 <div class="container" [hidden]="loading">
   <div class="header">
     <div class="section-icon">
-      <app-svg-icon [icon]="'icon-chevron-left'" [size]="40"></app-svg-icon>
+      <app-svg-icon
+        (click)="backRoute()"
+        [icon]="'icon-chevron-left'"
+        [size]="40"></app-svg-icon>
     </div>
-    <div class="first-heading">
+    <div *ngIf="!editMode" class="first-heading">
       <h1 class="heading first-heading__title">¡Hola!</h1>
     </div>
     <div class="second-heading">
-      <h1 class="heading second-heading__title">Configuremos tu perfil</h1>
+      <h1 class="heading second-heading__title">
+        {{ editMode ? 'Editar perfil' : 'Configuremos tu perfil' }}
+      </h1>
     </div>
   </div>
   <p class="sub-header">Queremos conocerte mejor.</p>
   <div class="container-content">
     <div class="card">
-      <app-card-profile (filePhoto)="changeFile($event)"></app-card-profile>
+      <app-card-profile
+        [coachImage]="photo"
+        (filePhoto)="changeFile($event)"></app-card-profile>
     </div>
     <div class="section-form">
       <h2 class="section-title">Tu información</h2>
