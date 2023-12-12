@@ -1,0 +1,28 @@
+<div class="card-pokemon">
+  <div class="section-left">
+    <div class="section-left__image">
+      <img
+        class="avatar"
+        [src]="image ?? 'assets/images/pokeball.png'"
+        alt="Imagen de Pokemon" />
+    </div>
+    <div class="section-left__name">
+      <h2 class="title">{{ pokemon?.name }}</h2>
+    </div>
+    <div class="section-left__type">
+      <h3 class="subtitle">{{ formatTypePokemon }}</h3>
+    </div>
+  </div>
+  <div class="section-right">
+    <div class="layout-stat" *ngFor="let stat of stats">
+      <div class="label-stat">
+        <h3 class="title">{{ stat.name }}</h3>
+      </div>
+      <div class="progress-stat">
+        <app-progress-bar
+          [process]="stat.count"
+          [totalProcess]="stat.countMax"></app-progress-bar>
+      </div>
+    </div>
+  </div>
+</div>
