@@ -32,4 +32,8 @@ export class ButtonComponent {
       [this.fontFamily]: true,
     };
   }
+
+  triggerClick(): void {
+    this.emitClick.emit();
+  }
 }
