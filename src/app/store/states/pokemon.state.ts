@@ -2,7 +2,9 @@ import { IPokemonFirstGeneration } from 'src/app/core/interfaces/first-generatio
 
 export interface IPokemonState {
   pokemons: IPokemonFirstGeneration[];
+  finished: boolean;
 }
 export const pokemonInitialState: IPokemonState = {
   pokemons: [],
+  finished: false,
 };

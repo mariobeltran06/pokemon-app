@@ -9,6 +9,10 @@ export const pokemonFeature = createFeature({
     on(PokemonActions.savePokemons, (state, { pokemons }) => ({
       ...state,
       pokemons,
+    })),
+    on(PokemonActions.finished, state => ({
+      ...state,
+      finished: true,
     }))
   ),
 });
