@@ -13,6 +13,8 @@ import {
 import { selectAllProfile } from 'src/app/store/selectors/profile.selector';
 import { IAppState } from 'src/app/store/states/app.state';
 import { IInfoProfileState } from 'src/app/store/states/profile.state';
+import { SwiperOptions } from 'swiper';
+import { SwiperModule } from 'swiper/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 
@@ -25,6 +27,7 @@ import { Store } from '@ngrx/store';
     ButtonComponent,
     CardProfileComponent,
     CardPokemonComponent,
+    SwiperModule,
   ],
   templateUrl: './finished-profile.component.html',
   styleUrls: ['./finished-profile.component.scss'],
@@ -36,6 +39,13 @@ export class FinishedProfileComponent implements OnInit {
   infoCoach: IInfoCardProfile | null = null;
   pokeDex: IPokemonFirstGeneration[] = [];
   finished: boolean = false;
+  config: SwiperOptions = {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 50,
+    navigation: true,
+    scrollbar: { draggable: true },
+  }
 
   constructor(private router: Router, private store: Store<IAppState>) {}
 
