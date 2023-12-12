@@ -2,7 +2,10 @@
   <div class="background-card" [ngClass]="{ selected, disabled }">
     <div class="layout">
       <div class="pokemon-image">
-        <img class="thumbnail" [src]="image" alt="Pokemon Imagen" />
+        <img
+          class="thumbnail"
+          [src]="image ?? 'assets/images/pokeball.png'"
+          alt="Pokemon Imagen" />
       </div>
       <div class="pill-name">
         <p>#{{ pokemon?.id | addZeros }}</p>

@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  IPokemonFirstGeneration,
-  IResponseSpritePokemon,
-} from 'src/app/core/interfaces/first-generation-pokemon.interface';
+import { IPokemonFirstGeneration } from 'src/app/core/interfaces/first-generation-pokemon.interface';
+import { IResponseSpritePokemon } from 'src/app/core/interfaces/sprite-pokemon.interface';
 import { AddZerosPipe } from 'src/app/core/pipes/add-zeros.pipe';
 import { ListPokemonService } from 'src/app/core/services/list-pokemon.service';
 
