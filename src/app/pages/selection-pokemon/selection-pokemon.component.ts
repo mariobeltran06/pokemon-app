@@ -70,13 +70,17 @@ export class SelectionPokemonComponent implements OnInit {
       .select(selectAllProfile)
       .pipe(untilDestroyed(this))
       .subscribe(profile => {
-        this.nameCoach = profile.name;
-        this.photo = profile.photo;
-        this.infoCoach = {
-          age: profile.age,
-          hobby: profile.hobby,
-          document: profile.document,
-        };
+        if (profile.name) {
+          this.nameCoach = profile.name;
+          this.photo = profile.photo;
+          this.infoCoach = {
+            age: profile.age,
+            hobby: profile.hobby,
+            document: profile.document,
+          };
+        } else {
+          this.router.navigate(['']);
+        }
       });
     this.formPokemon = formbuilder.group({
       pokemons: [null, [Validators.required]],
@@ -121,8 +125,9 @@ export class SelectionPokemonComponent implements OnInit {
     if (this.formPokemon.valid) {
       const { pokemons } = this.formPokemon.value;
       this.loading = true;
+      this.store.dispatch(PokemonActions.savePokemons({ pokemons }));
+      this.store.dispatch(PokemonActions.finished());
       setTimeout(() => {
-        this.store.dispatch(PokemonActions.savePokemons({ pokemons }));
         this.router.navigate(['perfil-finalizado']);
       }, 5000);
     }

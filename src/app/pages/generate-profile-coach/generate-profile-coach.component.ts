@@ -90,7 +90,7 @@ export class GenerateProfileCoachComponent {
         null,
         [
           Validators.required,
-          Validators.maxLength(50),
+          Validators.maxLength(20),
           Validators.minLength(2),
           Validators.pattern(PATTERN_NAMES),
         ],

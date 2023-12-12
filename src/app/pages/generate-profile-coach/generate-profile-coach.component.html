@@ -30,7 +30,7 @@
                 matInput
                 placeholder="Ej. Ricardo"
                 formControlName="name"
-                [maxLength]="50"
+                [maxlength]="20"
                 [minLength]="2" />
               <mat-error *ngIf="control('name').hasError('required')"
                 >El campo es requerido.</mat-error
@@ -39,7 +39,7 @@
                 >Debe tener 2 caracteres como mínimo.</mat-error
               >
               <mat-error *ngIf="control('name').hasError('maxlength')"
-                >Debe tener 50 caracteres como máximo.</mat-error
+                >Debe tener 20 caracteres como máximo.</mat-error
               >
               <mat-error *ngIf="control('name').hasError('pattern')"
                 >Debe contener solo letras y sin espacios.</mat-error
