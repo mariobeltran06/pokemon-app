@@ -1,0 +1,74 @@
+<div class="card-profile">
+  <div class="card-profile__header">
+    <ng-container *ngIf="finished; else showOtherHeader">
+      <div class="container-title">
+        <div class="heading">
+          <h2 class="title-header">Entrenador</h2>
+        </div>
+        <span class="spacer"></span>
+        <div class="image-medal">
+          <img class="medal" src="assets/images/medal.svg" alt="Medalla" />
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #showOtherHeader>
+      <h2 class="title title__user" *ngIf="nameCoach; else noNameCoach">
+        {{ nameCoach | truncate : 12 }}
+      </h2>
+      <ng-template #noNameCoach>
+        <h2 class="title">Imágen perfil</h2>
+      </ng-template>
+    </ng-template>
+  </div>
+  <div class="card-profile__image">
+    <img
+      *ngIf="coachImage; else noCoachImage"
+      class="image image__coach"
+      [src]="coachImage"
+      alt="Foto de Entrenador" />
+    <ng-template #noCoachImage>
+      <div class="image image__placeholder">
+        <app-svg-icon
+          [icon]="'icon-user'"
+          [size]="75"
+          [fill]="'#9bb8d3'"></app-svg-icon>
+      </div>
+    </ng-template>
+  </div>
+  <div class="card-profile__content">
+    <div class="container-content" *ngIf="infoProfile; else noInfo">
+      <div class="column column-1">
+        <p class="item column-1__item">Pasatiempo:</p>
+      </div>
+      <div class="column column-2">
+        <p class="item column-2__item">
+          {{
+            infoProfile.hobby ? (infoProfile.hobby | truncate : 10) : 'Ninguno'
+          }}
+        </p>
+      </div>
+      <div class="column column-1">
+        <p class="item column-1__item">Edad:</p>
+      </div>
+      <div class="column column-2">
+        <p class="item column-2__item">
+          {{ infoProfile.age }} {{ infoProfile.age > 1 ? 'años' : 'año' }}
+        </p>
+      </div>
+      <ng-container *ngIf="infoProfile.document">
+        <div class="column column-1">
+          <p class="item column-1__item">
+            {{ infoProfile.age >= 18 ? 'DUI:' : 'Carnet:' }}
+          </p>
+        </div>
+        <div class="column column-2">
+          <p class="item column-2__item">{{ infoProfile.document }}</p>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #noInfo>
+      <app-upload-file
+        (fileUpload)="changeUploadFile($event)"></app-upload-file>
+    </ng-template>
+  </div>
+</div>

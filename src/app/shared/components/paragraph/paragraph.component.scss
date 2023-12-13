@@ -1,0 +1,41 @@
+@import 'colors.scss';
+
+.black {
+  color: $black;
+}
+
+.primary {
+  color: $blue-2;
+}
+
+.white {
+  color: $white;
+}
+
+.neutral-gray {
+  color: $neutral-gray-2;
+}
+
+.neutral-black{
+  color: $neutral-black-1;
+}
+
+.red {
+  color: $red-error-1;
+}
+
+.regular {
+  font-family: 'Poppins-Regular', Verdana, sans-serif;
+}
+
+.semibold {
+  font-family: 'Poppins-Semibold', Verdana, sans-serif;
+}
+
+.bold {
+  font-family: 'Poppins-Bold', Verdana, sans-serif;
+}
+
+.medium {
+  font-family: 'Poppins-Medium', Verdana, sans-serif;
+}

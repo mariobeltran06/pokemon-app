@@ -1,0 +1,72 @@
+@import 'colors.scss';
+
+.card-mini {
+  position: relative;
+  width: 160px;
+  height: 140px;
+  cursor: pointer;
+
+  .background-card {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    border-radius: 20px;
+    height: 105px;
+    bottom: 0;
+    background-color: $neutral-gray-1;
+
+    .layout {
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+      .pokemon-image {
+        margin-top: -35px;
+        .thumbnail {
+          width: 80px;
+          height: 80px;
+          object-fit: contain;
+        }
+      }
+      .pill-name {
+        background-color: $blue-2;
+        color: $white;
+        border-radius: 10px;
+        padding: 5px 15px;
+        font-size: 12px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px;
+        font-family: 'Poppins-Bold', Verdana, sans-serif;
+        justify-content: space-evenly;
+        width: 145px;
+
+        .name {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  .selected {
+    background-color: $yellow-1;
+  }
+
+  .disabled {
+    background-color: $neutral-gray-3;
+    .layout {
+      .pokemon-image {
+        .thumbnail {
+          filter: opacity(0.4);
+        }
+      }
+      .pill-name {
+        opacity: 0.4;
+      }
+    }
+  }
+}

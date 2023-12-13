@@ -1,0 +1,18 @@
+@import 'colors.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .heading {
+    .title {
+      font-family: 'Poppins-Bold', Verdana, sans-serif;
+      font-size: 35px;
+      color: $blue-1;
+      text-align: center;
+    }
+  }
+}

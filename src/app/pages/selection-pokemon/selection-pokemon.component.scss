@@ -1,0 +1,140 @@
+@import 'colors.scss';
+
+.container {
+  margin-top: 30px;
+  margin-left: 90px;
+  margin-right: 90px;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+    .section-icon {
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .heading {
+      color: $blue-1;
+      font-size: 35px;
+      line-height: normal;
+    }
+
+    .first-heading {
+      &__title {
+        font-family: 'Poppins-Bold', Verdana, sans-serif;
+      }
+    }
+    .second-heading {
+      &__title {
+        font-family: 'Poppins-Medium', Verdana, sans-serif;
+      }
+    }
+  }
+
+  .sub-header {
+    font-family: 'Poppins-Regular', Verdana, sans-serif;
+    font-size: 18px;
+    line-height: normal;
+    color: $neutral-gray-5;
+    margin-left: 50px;
+  }
+
+  .container-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 250px;
+
+    .card {
+      margin-top: 55px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+    }
+
+    .section-form {
+      margin-top: 55px;
+      width: 535px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      .section-title {
+        font-family: 'Poppins-Regular', Verdana, sans-serif;
+        font-size: 30px;
+        line-height: normal;
+        color: $blue-2;
+      }
+      .section-subtitle {
+        font-family: 'Poppins-Regular', Verdana, sans-serif;
+        font-size: 18px;
+        line-height: normal;
+        color: $neutral-gray-5;
+      }
+      .form-group {
+        margin-top: 30px;
+
+        .form-control {
+          position: relative;
+        }
+        .icon {
+          position: absolute;
+          left: 10px; /* Ajusta la posición del icono según tus necesidades */
+          top: 60%;
+          transform: translateY(-50%);
+        }
+        .custom-input {
+          padding-left: 40px;
+          width: 100%;
+          height: 36px;
+          border: none;
+          border-radius: 10px;
+          background-color: $neutral-gray-3;
+          outline: none;
+          appearance: none;
+          font-family: 'Poppins-Regular', Verdana, sans-serif;
+          font-size: 16px;
+        }
+
+        input::placeholder {
+          font-family: 'Poppins-ExtraBold', Verdana, sans-serif;
+          font-size: 16px;
+        }
+
+        .layout-pokemons {
+          margin-top: 10px;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr;
+          gap: 10px 16px;
+          height: 440px;
+          overflow-y: auto;
+        }
+
+        .no-match {
+          .title {
+            color: $neutral-gray-5;
+            font-family: 'Poppins-Bold', Verdana, sans-serif;
+            font-size: 18px;
+          }
+        }
+
+        .button-group,
+        .no-match {
+          margin-top: 35px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: center;
+          gap: 20px;
+        }
+      }
+    }
+  }
+}

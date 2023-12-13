@@ -1,0 +1,27 @@
+@import 'colors.scss';
+
+.progress-bar {
+  height: 13px;
+  border: 5px solid $neutral-gray-3;
+  border-radius: 20px;
+  padding: 6px;
+  position: relative;
+  margin: 0;
+}
+
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 13px;
+  border-radius: 20px;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.orange {
+  background-color: orange;
+}

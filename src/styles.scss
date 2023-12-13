@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
+@import 'reset.scss';
+@import 'colors.scss';
+@import 'fonts.scss';
+@import 'theme';
+@import 'material-components-custom-styles.scss';
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Poppins-Regular', 'Verdana', sans-serif;
+  background-color: $neutral-gray-4;
+}

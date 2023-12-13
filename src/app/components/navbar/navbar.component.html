@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <span>
+    <img src="assets/images/logo-pokemon.png" alt="Logo Pokemon" />
+  </span>
+  <span class="spacer"></span>
+  <app-button
+    *ngIf="nameCoach && finished"
+    [text]="firstNameCoach"
+    [width]="'160px'"
+    [iconPosition]="'suffix'"
+    [icon]="'icon-chevron-down'"
+    [iconSize]="24"
+    [height]="'36px'"
+    [fontFamily]="'semibold'"
+    [fontSize]="'14px'"
+    (emitClick)="open()"
+    [class]="'secundary'"></app-button>
+  <app-svg-icon *ngIf="finished" [icon]="'icon-search'"></app-svg-icon>
+</mat-toolbar>
