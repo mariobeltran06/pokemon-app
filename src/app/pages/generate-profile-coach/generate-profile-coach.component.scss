@@ -4,6 +4,7 @@
   margin-top: 75px;
   margin-left: 90px;
   margin-right: 90px;
+  padding-bottom: 50px;
 
   .header {
     display: flex;
@@ -107,6 +108,32 @@
           justify-content: center;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    margin-top: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+    .header{
+      justify-content: center;
+      .heading{
+        font-size: 25px;
+      }
+    }
+
+    .sub-header{
+      margin-left: 10px;
+    }
+
+    .container-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      gap: 0px 250px;
     }
   }
 }

@@ -14,14 +14,14 @@
     <div class="first-item">
       <ng-container *ngIf="isFile; else dontShowFile">
         <app-paragraph
-          [content]="text"
+          [content]="text | truncate: 25"
           [fontFamily]="'semibold'"
           [color]="isError ? 'red' : 'primary'"
           [fontSize]="'0.875rem'"></app-paragraph
       ></ng-container>
       <ng-template #dontShowFile>
         <app-paragraph
-          [content]="text"
+          [content]="text | truncate: 25"
           [fontFamily]="'semibold'"
           [color]="'primary'"
           [fontSize]="'0.875rem'"></app-paragraph>

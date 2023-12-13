@@ -7,13 +7,14 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { TruncatePipe } from 'src/app/core/pipes/truncate.pipe';
 import { ParagraphComponent } from '../paragraph/paragraph.component';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 
 @Component({
   selector: 'app-upload-file',
   standalone: true,
-  imports: [CommonModule, ParagraphComponent, SvgIconComponent],
+  imports: [CommonModule, ParagraphComponent, SvgIconComponent, TruncatePipe],
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.scss'],
 })
