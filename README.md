@@ -15,3 +15,7 @@ ng serve -o
 ```
 
 - Y listo el proyecto funcionando.
+
+# Hosting :globe_with_meridians:
+
+[Deploy del proyecto](https://pokemon-app-295fd.web.app)
